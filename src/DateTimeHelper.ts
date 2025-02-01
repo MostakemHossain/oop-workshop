@@ -1,4 +1,4 @@
-class DateTimeHelper {
+export class DateTimeHelper {
   // breifiable
   //   private readonly date: Date;
   //   constructor(date: Date = new Date()) {

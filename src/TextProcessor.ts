@@ -1,3 +1,5 @@
+import { ConsoleTransport, Logger } from "./Logger";
+
 class TextProcessor {
   constructor(private text: string) {}
 
@@ -85,20 +87,24 @@ class TextProcessor {
 const comment =
   'some <b>html</b> <i>text</i> with extra spaces and <script>alert("xss")</script> #test @user #example';
 
-const textProcessor = new TextProcessor(comment);
+// const textProcessor = new TextProcessor(comment);
 
-const text = textProcessor
-  .sanitizeHTML()
-  .truncate(100)
-  .capitalizeWords()
-  .value();
+// const text = textProcessor
+//   .sanitizeHTML()
+//   .truncate(100)
+//   .capitalizeWords()
+//   .value();
 
-console.log(text);
-console.log(TextProcessor.extractMentions(comment));
-console.log(TextProcessor.slugify('HelloWwdd sssk sse swpw'));
-console.log(
-  TextProcessor.isValidURL(
-    'https://www.example.com/path/to/page?param=value#anchor',
-  ),
-);
-console.log(TextProcessor.getWordCount('sjjj shhs shsjjs'));
+// console.log(text);
+// console.log(TextProcessor.extractMentions(comment));
+// console.log(TextProcessor.slugify('HelloWwdd sssk sse swpw'));
+// console.log(
+//   TextProcessor.isValidURL(
+//     'https://www.example.com/path/to/page?param=value#anchor',
+//   ),
+// );
+// console.log(TextProcessor.getWordCount('sjjj shhs shsjjs'));
+
+const logger= new Logger("TextProcessor");
+logger.addTransport(new ConsoleTransport());
+logger.info(TextProcessor.extractHashtags(comment).toString());
